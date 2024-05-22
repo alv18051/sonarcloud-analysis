@@ -24,11 +24,17 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Install SonarCloud Scanner
+       - name: Install SonarCloud Scanner
         run: |
-          curl -sL https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip
-          unzip build-wrapper-linux-x86.zip -d ~/sonar-scanner
-          export PATH="$PATH:~/sonar-scanner/build-wrapper-linux-x86"
+          curl -sL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip -o sonar-scanner-cli.zip
+          unzip sonar-scanner-cli.zip -d $HOME
+          echo "$HOME/sonar-scanner-4.7.0.2747-linux/bin" >> $GITHUB_PATH
+
+      - name: Verify SonarScanner Installation
+        run: |
+          ls -l $HOME/sonar-scanner-4.7.0.2747-linux/bin
+          $HOME/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner --version
+
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
