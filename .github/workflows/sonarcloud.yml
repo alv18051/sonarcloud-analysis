@@ -11,16 +11,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: '11'
+
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
       - name: Install SonarCloud Scanner
         run: |
           curl -sL https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip
@@ -30,8 +33,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner \
-          -Dsonar.organization=alv18051\
-          -Dsonar.projectKey=alv18051_sonarcloud-analysis \
-          -Dsonar.sources=. \
+          sonar-scanner           -Dsonar.organization=alv18051
+          -Dsonar.projectKey=alv18051_sonarcloud-analysis           -Dsonar.sources=. 
           -Dsonar.host.url=https://sonarcloud.io
