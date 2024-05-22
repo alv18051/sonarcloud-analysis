@@ -61,6 +61,13 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=alv18051_sonarcloud-analysis
+          -Dsonar.organization=alv18051
+          -Dsonar.sources=.
+          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.python.coverage.reportPaths=coverage.xml
 
 
 
