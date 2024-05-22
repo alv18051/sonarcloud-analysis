@@ -5,6 +5,7 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
@@ -24,7 +25,7 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-       - name: Install SonarCloud Scanner
+      - name: Install SonarCloud Scanner
         run: |
           curl -sL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip -o sonar-scanner-cli.zip
           unzip sonar-scanner-cli.zip -d $HOME
@@ -39,6 +40,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner           -Dsonar.organization=alv18051
-          -Dsonar.projectKey=alv18051_sonarcloud-analysis           -Dsonar.sources=. 
+          sonar-scanner \
+          -Dsonar.organization=alv18051 \
+          -Dsonar.projectKey=alv18051_sonarcloud-analysis \
+          -Dsonar.sources=. \
           -Dsonar.host.url=https://sonarcloud.io
+
