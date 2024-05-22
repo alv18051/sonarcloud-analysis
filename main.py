@@ -9,22 +9,22 @@ def read_file(file_path):
         print(f"The file at {file_path} does not exist.")
         return None
     finally:
-        file.close()  # This could fail if the file opening fails
+        file.close()  
 
 def write_file(file_path, data):
     file = open(file_path, 'w')
     file.write(data)
-    # Missing file.close() or context manager
+
 
 def get_user_input():
-    # Hardcoding sensitive data
+
     api_key = "12345-secure-key"
     print("Using API Key: " + api_key)
     user_input = input("Enter some text: ")
     return user_input
 
 def process_data(data):
-    # Introduce a type mismatch by adding a string to an integer
+
     try:
         processed_data = data.lower() + 1
     except TypeError:
@@ -34,9 +34,8 @@ def process_data(data):
 
 def main():
     file_path = "example.txt"
-    
-    # Redundant code
-    open_file = open(file_path, 'r')  # Unused file opening, potential resource leak
+
+    open_file = open(file_path, 'r')
     open_file.close()
     
     data = read_file(file_path)
