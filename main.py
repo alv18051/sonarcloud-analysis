@@ -23,6 +23,7 @@ def process_data(data):
 
 def main():
     file_path = "example.txt"
+    file_path = "example.txt"
     # Reading from a file
     data = read_file(file_path)
     if data is None:
