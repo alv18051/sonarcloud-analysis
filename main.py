@@ -19,7 +19,7 @@ def write_file(file_path, data):
 def get_user_input():
 
     api_key = "12345-secure-key"
-    print("Using API Key: " + api_key)
+    print("Using API Key:g " + api_key)
     user_input = input("Enter some text: ")
     return user_input
 
